@@ -16,7 +16,7 @@ export default function ApiScreen() {
 				setUsers(null);
 				// loading 상태를 true 로 바꿉니다.
 				setLoading(true);
-				const response = await axios.get('http://10.177.193.216:8080/user/all');
+				const response = await axios.get('http://10.177.193.15:8080/user/all');
 				setUsers(response.data); // setUsers로 response.data 값 넣기
 			} catch (e) {
 				setError(e);

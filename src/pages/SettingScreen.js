@@ -7,7 +7,7 @@ export default function SettingScreen({navigation}) {
 			<Text
 				onPress={() => navigation.navigate('Home')}
 				style={{fontSize: 26, fontWeight: 'bold'}}>
-				Setting Screen
+				test screen
 			</Text>
 		</View>
 	);

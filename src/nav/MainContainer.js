@@ -2,6 +2,7 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { CommonActions } from '@react-navigation/native';
 
 //Screens
 import HomeScreen from '@pages/HomeScreen';
@@ -18,12 +19,12 @@ const settingsName = 'Setting';
 const apiName = 'api';
 const dbName = 'DBServer';
 
-const Tab = createBottomTabNavigator();
+const Stack = createBottomTabNavigator();
 
 export default function MainContainer() {
 	return (
 		<NavigationContainer>
-			<Tab.Navigator
+			<Stack.Navigator
 				initialRouteName={homeName}
 				screenOptions={({route}) => ({
 					tabBarIcon: ({focused, color, size}) => {
@@ -44,16 +45,20 @@ export default function MainContainer() {
 						return <Ionicons name={iconName} size={size} color={color} />;
 					},
 				})}>
-				<Tab.Screen name={homeName} component={HomeScreen} />
+				<Stack.Screen name={homeName} component={HomeScreen} />
 
-				<Tab.Screen name={detailsName} component={DetailsScreen} />
+				<Stack.Screen name={detailsName} component={DetailsScreen} />
 
-				<Tab.Screen name={settingsName} component={SettingsScreen} />
+				<Stack.Screen name={settingsName} component={SettingsScreen} />
 
-				<Tab.Screen name={apiName} component={ApiScreen} />
+				<Stack.Screen name={apiName} component={ApiScreen} />
 
-				<Tab.Screen name={dbName} component={DbServerScreen} />
-			</Tab.Navigator>
+				<Stack.Screen component={DbServerScreen} onPress={() => NavigationContainer.dispatch(
+					commonActions.navigate({
+						name: dbName
+					})
+				)} />
+			</Stack.Navigator>
 		</NavigationContainer>
 	);
 }
